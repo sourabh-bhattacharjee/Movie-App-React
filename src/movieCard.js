@@ -1,18 +1,13 @@
 import React from "react";
 export default class movieCard extends React.Component{
     
-    handleFavClick = () =>{
-        this.setState(
-            {isFav: !this.state.isFav}
-        );
-    }
     handleCartClick = () =>{
         this.setState(
             {isCartAdded: !this.state.isCartAdded}
         );
     }
     render(){
-        const {title,plot,price,rating,starCt,isFav,isCartAdded,poster} = this.props.movie;
+        const {title,plot,price,rating,starCt,fav,isCartAdded,poster} = this.props.movie;
         return(
             <div className="main" key={title}>
                 <div className="movie-card">
@@ -34,8 +29,8 @@ export default class movieCard extends React.Component{
                                 onClick={() => this.props.addstars(this.props.movie)}/>
                                 <span className="starCount">{starCt}</span>
                             </div>
-                            <button className={isFav?"unfavourite-btn":"favourite-btn"} onClick={this.handleFavClick}>{isFav? "Un-favourite":"Favourite"}</button>
-                            <button className={isCartAdded?"uncart-btn":"cart-btn"} onClick={this.handleCartClick}>{isCartAdded? "Remove from cart":"Add to cart"}</button>
+                            <button className={fav?"unfavourite-btn":"favourite-btn"} onClick={() => this.props.favclick(this.props.movie)}>{fav? "Un-favourite":"Favourite"}</button>
+                            <button className={isCartAdded?"uncart-btn":"cart-btn"} onClick={() => this.props.cartclick(this.props.movie)}>{isCartAdded? "Remove from cart":"Add to cart"}</button>
                         </div>
                     </div>
                 </div>

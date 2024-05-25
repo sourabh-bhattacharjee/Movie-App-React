@@ -66,11 +66,26 @@ export default class movieList extends React.Component{
             movies: this.state.movies
         })
     }
+    handleFavClick = (indexMovie) => {
+        const mId = this.state.movies.indexOf(indexMovie);
+        this.state.movies[mId].fav = !this.state.movies[mId].fav;
+        this.setState({
+            movies : this.state.movies
+        })
+    }
+    handleCartClick = (indexMovie) => {
+        const mId = this.state.movies.indexOf(indexMovie);
+        this.state.movies[mId].isCartAdded = !this.state.movies[mId].isCartAdded;
+        this.setState({
+            movies : this.state.movies
+        })
+    }
     render(){
         const movieList = this.state.movies;
         return (
             movieList.map((movieIndex) => <MovieCard movie = {movieIndex} addstars = {this.handleIncStars} 
-                                            decstars = {this.handleDecStars} />)
+                                            decstars = {this.handleDecStars} favclick = {this.handleFavClick} 
+                                            cartclick = {this.handleCartClick} />)
         )
     }
 }
